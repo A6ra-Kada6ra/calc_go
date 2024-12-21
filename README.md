@@ -20,10 +20,15 @@
 
 *Замените your-username на ваше имя пользователя на GitHub.
 Перейдите в папку проекта:
+
 cd calc_service
+
 Запустите сервер с помощью команды:
+
 go run ./cmd/main.go
+
 После успешного запуска сервиса вы увидите сообщение в консоли:
+
 Starting server on :8080
 Сервис будет доступен по адресу: http://localhost:8080/api/v1/calculate.
 
@@ -38,36 +43,47 @@ Starting server on :8080
 
 Примеры запросов
 Успешный запрос:
+
 curl --location 'http://localhost:8080/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
   "expression": "2+2*2"
 }'
+
 Ожидаемый ответ:
+
 {
     "result": "6"
 }
 
 Запрос с ошибкой 422 (неверное выражение):
+
 curl --location 'http://localhost:8080/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
   "expression": "2++2*2"
 }'
+
 Ожидаемый ответ:
+
 {
     "error": "Expression is not valid"
 }
+
 Запрос с ошибкой 500 (внутренняя ошибка сервера):
+
 curl --location 'http://localhost:8080/api/v1/calculate' \
 --header 'Content-Type: application/json' \
 --data '{
   "expression": "10/0"
 }'
+
 Ожидаемый ответ:
+
 {
     "error": "Internal server error"
 }
+
 Тестирование
 Для запуска тестов выполните следующую команду в терминале:
 
